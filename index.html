@@ -9,6 +9,7 @@
             --primary-color: #ff0000;
             --secondary-color: #282828;
             --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --accent-glow: rgba(255, 0, 0, 0.5);
         }
 
         * {
@@ -20,24 +21,42 @@
 
         body {
             background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
+            overflow: hidden;
+        }
+
+        /* နောက်ခံ Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem 2rem;
-            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            border-radius: 35px;
             width: 100%;
             max-width: 420px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             margin: 20px;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo-box {
@@ -47,83 +66,150 @@
         }
 
         .logo-box img {
-            width: 100px;
-            height: 100px;
-            border-radius: 24px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
+            width: 110px;
+            height: 110px;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: float 4s ease-in-out infinite;
         }
 
-        .logo-box:hover img {
-            transform: scale(1.05) rotate(2deg);
+        /* Logo လွင့်နေတဲ့ ပုံစံ Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        .logo-box::after {
+            content: '';
+            position: absolute;
+            top: -5px; bottom: -5px; left: -5px; right: -5px;
+            background: linear-gradient(45deg, #ff0000, transparent, #ff0000);
+            border-radius: 32px;
+            z-index: -1;
+            opacity: 0.3;
+            animation: rotateGlow 3s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+            100% { filter: hue-rotate(360deg); }
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-            background: linear-gradient(to right, #fff, #ccc);
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ffffff, #ff9999);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .version-badge {
             display: inline-block;
-            background: rgba(255, 0, 0, 0.15);
-            color: #ff4d4d;
-            padding: 5px 15px;
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff6b6b;
+            padding: 6px 18px;
             border-radius: 100px;
             font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 0, 0, 0.2);
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .description {
-            color: #b0b0b0;
+            color: #d1d1d1;
             line-height: 1.6;
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin-bottom: 2.5rem;
         }
 
         .download-btn {
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             background: #ff0000;
             color: white;
             text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 16px;
-            font-size: 1.1rem;
+            padding: 18px 35px;
+            border-radius: 20px;
+            font-size: 1.15rem;
             font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
-        }
-
-        .download-btn:hover {
-            background: #e60000;
-            transform: translateY(-3px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4);
         }
 
-        .download-btn:active {
-            transform: translateY(-1px);
+        /* ခလုတ်ထဲက အရောင်လက်တဲ့ Animation */
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.6s;
         }
 
-        /* ပိုလှသွားအောင် အောက်နားမှာ Footer လေးထည့်ပေးထားတယ် */
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.6);
+        }
+
+        .download-btn svg {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(5px);}
+            60% {transform: translateY(3px);}
+        }
+
         .footer-text {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.3);
+            margin-top: 2.5rem;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+        }
+
+        /* ပိုပြီး Dynamic ဖြစ်အောင် Floating bubbles လေးတွေ */
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: -1;
+            bottom: -100px;
+            animation: bubbleUp 15s linear infinite;
+        }
+
+        @keyframes bubbleUp {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
+
+    <div class="bubble" style="width: 80px; height: 80px; left: 10%; animation-delay: 0s;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; left: 30%; animation-delay: 2s;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; left: 70%; animation-delay: 5s;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; left: 90%; animation-delay: 1s;"></div>
 
     <div class="container">
         <div class="logo-box">
@@ -131,21 +217,22 @@
         </div>
         
         <h1>YT Plus APK</h1>
-        <div class="version-badge">V2.0.0 • Premium</div>
+        <div class="version-badge">V2.0.0 • Premium Edition</div>
         
         <p class="description">
-          <br>
-            YT Plus နောက်ဆုံးထွက် Version ကို အောက်တွင် ရယူပါ။
+            အကောင်းဆုံး Feature များစွာပါဝင်သော <br>
+            <strong>YT Plus</strong> နောက်ဆုံးထွက် Version ကို <br>
+            အောက်ပါ Button တွင် အခမဲ့ရယူပါ။
         </p>
         
         <a href="https://github.com/yawlawt2000/Yt-Plus/releases/download/V2.0.0/YT_PLUScom.yt.plusv2.0.apk" class="download-btn">
             <span>Download APK</span>
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
             </svg>
         </a>
 
-        <div class="footer-text">Secure & Fast Download</div>
+        <div class="footer-text">✨ Secure • Fast • Ad-Free ✨</div>
     </div>
 
 </body>
