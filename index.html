@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>YT Plus - Premium Download</title>
+    <title>YT Plus VPN - Premium Download</title>
     <style>
         :root {
             --primary-color: #ff0000;
@@ -14,8 +14,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-tap-highlight-color: transparent; /* Mobile tap highlight ကို ဖယ်ထုတ်ခြင်း */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -37,12 +37,11 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* နောက်ခံ အလှဆင် အဝိုင်းလေးများ */
         .orb {
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 0, 0, 0.1);
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 0, 0, 0.15);
             filter: blur(80px);
             border-radius: 50%;
             z-index: -1;
@@ -56,7 +55,7 @@
             padding: 2.5rem 1.5rem;
             border-radius: 35px;
             width: 100%;
-            max-width: 380px; /* Mobile width အတွက် အသင့်တော်ဆုံး */
+            max-width: 380px;
             text-align: center;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
             animation: containerAppear 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -77,6 +76,7 @@
             height: 90px;
             border-radius: 24px;
             animation: float 3s ease-in-out infinite;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes float {
@@ -95,22 +95,23 @@
 
         .version-badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 0, 0, 0.2);
             color: #ff4d4d;
             padding: 4px 14px;
             border-radius: 100px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             border: 1px solid rgba(255, 77, 77, 0.3);
             margin-bottom: 1.5rem;
+            text-transform: uppercase;
         }
 
         .description {
             color: #e0e0e0;
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 2rem;
-            padding: 0 10px;
+            padding: 0 5px;
         }
 
         .download-btn {
@@ -125,16 +126,29 @@
             border-radius: 18px;
             font-size: 1.1rem;
             font-weight: 700;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s;
             box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        /* Mobile Touch Effect */
+        /* Shine effect */
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
         .download-btn:active {
             transform: scale(0.96);
             background: #cc0000;
+        }
+
+        .download-btn:hover::after {
+            left: 100%;
         }
 
         .download-btn svg {
@@ -147,40 +161,42 @@
         }
 
         .footer-text {
-            margin-top: 1.8rem;
+            margin-top: 2rem;
             font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.4);
             letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
-        /* Mobile ပေါ်မှာ ပိုကြည့်ကောင်းစေမည့် အောက်ခြေစာသား */
         .safe-tag {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 5px;
-            margin-top: 10px;
+            gap: 6px;
+            margin-top: 12px;
             color: #4ade80;
             font-size: 0.75rem;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
-    <div class="orb" style="top: 10%; left: 10%;"></div>
-    <div class="orb" style="bottom: 10%; right: 10%; background: rgba(48, 43, 99, 0.5);"></div>
+    <div class="orb" style="top: -50px; left: -50px;"></div>
+    <div class="orb" style="bottom: -50px; right: -50px; background: rgba(48, 43, 99, 0.6);"></div>
 
     <div class="container">
         <div class="logo-box">
-            <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/icon.png" alt="YT Plus Logo">
+            <img src="https://raw.githubusercontent.com/yawlawt/YTPlusVip/main/images/icon.png" alt="YT Plus VPN Logo">
         </div>
         
-        <h1>YT Plus APK</h1>
+        <h1>YT Plus VPN</h1>
         <div class="version-badge">PREMIUM • V2.0.0</div>
         
         <p class="description">
-            ကြော်ငြာမပါဘဲ YouTube ကို <br>
-            လွတ်လပ်စွာ ကြည့်ရှုနိုင်ဖို့ အခုပဲ ဒေါင်းလုဒ်လုပ်ပါ။
+            ကြော်ငြာမပါတဲ့ <strong>YT Plus VPN</strong> ကို <br>
+            လွယ်ကူစွာ အသုံးပြုနိုင်ဖို့ အခုပဲ ဒေါင်းလုဒ်လုပ်ပါ။
+            တစ်လ ၅၀ ဘတ်
         </p>
         
         <a href="https://github.com/yawlawt2000/Yt-Plus/releases/download/V2.0.0/YT_PLUScom.yt.plusv2.0.apk" class="download-btn">
@@ -191,14 +207,13 @@
         </a>
 
         <div class="safe-tag">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
             </svg>
-            Virus Free • Verified
+            Secure & Verified APK
         </div>
 
-        <div class="footer-text">DESIGNED FOR MOBILE</div>
+        <div class="footer-text">Enhanced Mobile Experience</div>
     </div>
 
 </body>
